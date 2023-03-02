@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">HireHub</string>
     <string name="tv_log_in">Log in</string>
-    <string name="sw_log_in_as_company">Log in as Company</string>
+    <string name="sw_log_in_as_company">Register as Company</string>
     <string name="et_input_your_username">Input your username</string>
     <string name="et_input_your_password">Input your password</string>
     <string name="btn_log_in">Log in</string>
@@ -9,4 +9,9 @@
     <string name="tv_register">Register</string>
     <string name="tv_username">Your username</string>
     <string name="tv_password">Your password</string>
+    <string name="register">Register</string>
+    <string name="et_reg_name">Choose your username</string>
+    <string name="et_reg_pwd">Set your password</string>
+    <string name="tv_accont">You already have an account?</string>
+    <string name="tv_name">Your name</string>
 </resources>
