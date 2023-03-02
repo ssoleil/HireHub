@@ -10,7 +10,8 @@
     <string name="tv_username">Your username</string>
     <string name="tv_password">Your password</string>
     <string name="register">Register</string>
-    <string name="et_reg_name">Choose your username</string>
+    <string name="et_reg_username">Choose your username</string>
+    <string name="et_reg_name">Choose your name</string>
     <string name="et_reg_pwd">Set your password</string>
     <string name="tv_accont">You already have an account?</string>
     <string name="tv_name">Your name</string>
