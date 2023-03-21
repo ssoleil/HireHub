@@ -1,9 +1,8 @@
-package com.example.hirehub
+package com.example.hirehub.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.hirehub.databinding.ActivityLoginBinding
 import com.example.hirehub.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {

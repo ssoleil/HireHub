@@ -1,4 +1,4 @@
-package com.example.hirehub
+package com.example.hirehub.ui
 
 import android.content.Intent
 import android.os.Bundle
