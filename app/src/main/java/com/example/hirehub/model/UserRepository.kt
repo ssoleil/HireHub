@@ -3,7 +3,7 @@ package com.example.hirehub.model
 import androidx.annotation.WorkerThread
 import com.example.hirehub.model.dao.UserDao
 import com.example.hirehub.model.entities.User
-import java.util.concurrent.Flow
+import kotlinx.coroutines.flow.Flow
 
 class UserRepository(private val userDao: UserDao) {
 
