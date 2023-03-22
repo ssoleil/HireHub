@@ -23,6 +23,9 @@ class RegisterActivity : AppCompatActivity() {
             } else if (binding.etPwd.text.isEmpty()) {
                 binding.etPwd.error = "Password is required"
             } else {
+                //check if exists?
+                //add to db
+
                 val i = Intent(applicationContext, MainActivity::class.java)
                 startActivity(i)
             }

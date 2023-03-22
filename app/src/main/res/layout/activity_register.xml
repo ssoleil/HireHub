@@ -46,11 +46,10 @@
 
     <Button
         android:id="@+id/button"
-        style="@style/ShapeAppearanceOverlay.Material3.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="40"
-        android:paddingRight="40"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
 
         android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
