@@ -3,6 +3,7 @@ package com.example.hirehub.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hirehub.HireHubApplication
 import com.example.hirehub.databinding.ActivityMainBinding
@@ -26,7 +27,14 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = binding.rvView
         val adapter = OfferAdapter()
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                baseContext,
+                layoutManager.orientation
+            )
+        )
 
         // Add an observer on the LiveData
         // The onChanged() method fires when the observed data changes and the activity is
