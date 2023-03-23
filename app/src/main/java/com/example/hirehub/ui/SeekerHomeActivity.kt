@@ -25,6 +25,8 @@ class SeekerHomeActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        setSupportActionBar(binding.toolbar)
+
         val recyclerView = binding.rvView
         val adapter = OfferAdapter()
         recyclerView.adapter = adapter

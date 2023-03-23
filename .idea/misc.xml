@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_login.xml" value="0.75" />
+        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/ic_my_offers.xml" value="0.2085" />
+        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/my_offers.xml" value="0.2085" />
+        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/round.xml" value="0.164" />
+        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_login.xml" value="0.5672937771345875" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_main.xml" value="0.16875" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_seeker_home.xml" value="0.2" />
+        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_seeker_home.xml" value="0.25" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/offer_item.xml" value="0.25" />
       </map>
     </option>

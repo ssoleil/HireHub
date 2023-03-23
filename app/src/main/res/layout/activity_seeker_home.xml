@@ -6,15 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".ui.SeekerHomeActivity">
 
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/tv_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGIN"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/purple_500"
+            app:title="Offers for you"
+            app:titleTextColor="@color/white"
+            android:minHeight="?attr/actionBarSize">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="@null"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_my_offers"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_login" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView

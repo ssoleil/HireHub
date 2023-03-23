@@ -40,31 +40,46 @@ class RegisterActivity : AppCompatActivity() {
             } else if (pwd.text.isEmpty()) {
                 pwd.error = "Password is required"
             } else {
+                userViewModel.findUser(username.text.toString()).observe(this) { user ->
+                    //if we don't have an account
+                    when (user) {
+                        null -> {
+                            val newUser: User = if (binding.swIsCompany.isChecked) {
+                                User(
+                                    0,
+                                    name.text.toString(),
+                                    username.text.toString(),
+                                    pwd.text.toString(),
+                                    "hr",
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                                )
+                            } else {
+                                User(
+                                    0,
+                                    name.text.toString(),
+                                    username.text.toString(),
+                                    pwd.text.toString(),
+                                    "seeker",
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                                )
+                            }
+                            userViewModel.insert(newUser)
 
-                val user = userViewModel.findUser(username.text.toString(), pwd.text.toString())
-                //if we don't have an account
-                if (user.value == null) {
-
-                    val newUser : User = if (binding.swIsCompany.isChecked) {
-                        User(0, name.text.toString(), username.text.toString(), pwd.text.toString(),
-                            "hr", null, null, null, null)
-                    } else {
-                        User(0, name.text.toString(), username.text.toString(), pwd.text.toString(),
-                            "seeker", null, null, null, null)
+                            //todo: save current user
+                            //todo: change to hr home screen
+                            val i = Intent(applicationContext, SeekerHomeActivity::class.java)
+                            startActivity(i)
+                        }
+                        else -> {
+                            Toast.makeText(this, "User is already exists", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                    userViewModel.insert(newUser)
-
-                    Log.d(TAG, newUser.toString())
-                    Log.d(TAG, name.toString())
-                    Log.d(TAG, username.toString())
-
-                    //todo: save current user
-                    //todo: change to hr home screen
-                    val i = Intent(applicationContext, SeekerHomeActivity::class.java)
-                    startActivity(i)
-                }
-                else {
-                    Toast.makeText(this, "User is already exists", Toast.LENGTH_SHORT).show()
                 }
             }
         }

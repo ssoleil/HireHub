@@ -42,22 +42,24 @@ class LoginActivity : AppCompatActivity() {
                 userViewModel.findUser(username.text.toString(), pwd.text.toString()).observe(this) { user ->
                     //if we don't have an account
                     Log.d("LoginActivity", user?.userName.toString())
-                    if (user == null) {
-                        Toast.makeText(this, "User is not found", Toast.LENGTH_SHORT).show()
-                    }
-                    else if (user.userStatus == "seeker") {
-                        //todo: save current user
-                        val i = Intent(applicationContext, SeekerHomeActivity::class.java)
-                        startActivity(i)
-                    }
-                    else if (user.userStatus == "hr") {
-                        //todo: save current user
-                        //todo: hr home screen
-//                    val i = Intent(applicationContext, SeekerHomeActivity::class.java)
-//                    startActivity(i)
-                    }
-                    else {
-                        Log.d("LoginActivity", "else")
+                    when {
+                        user == null -> {
+                            Toast.makeText(this, "User is not found", Toast.LENGTH_SHORT).show()
+                        }
+                        user.userStatus == "seeker" -> {
+                            //todo: save current user
+                            val i = Intent(applicationContext, SeekerHomeActivity::class.java)
+                            startActivity(i)
+                        }
+                        user.userStatus == "hr" -> {
+                            //todo: save current user
+                            //todo: hr home screen
+//                            val i = Intent(applicationContext, SeekerHomeActivity::class.java)
+//                            startActivity(i)
+                        }
+                        else -> {
+                            Log.d("LoginActivity", "else")
+                        }
                     }
                 }
             }
@@ -68,5 +70,4 @@ class LoginActivity : AppCompatActivity() {
             startActivity(i)
         }
     }
-
 }

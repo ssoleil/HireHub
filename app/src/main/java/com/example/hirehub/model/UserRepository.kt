@@ -24,5 +24,6 @@ class UserRepository(private val userDao: UserDao) {
      fun findUser(username: String, pwd: String) : LiveData<User?> =
         userDao.findUserByUsernameAndPwd(username, pwd)
 
-
+    fun findUser(username: String) : LiveData<User?> =
+        userDao.findUserByUsername(username)
 }
