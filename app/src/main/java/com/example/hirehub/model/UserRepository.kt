@@ -1,6 +1,7 @@
 package com.example.hirehub.model
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import com.example.hirehub.model.dao.UserDao
 import com.example.hirehub.model.entities.User
 import kotlinx.coroutines.flow.Flow
@@ -19,4 +20,9 @@ class UserRepository(private val userDao: UserDao) {
     suspend fun insert(user: User) {
         userDao.insert(user)
     }
+
+     fun findUser(username: String, pwd: String) : LiveData<User?> =
+        userDao.findUserByUsernameAndPwd(username, pwd)
+
+
 }

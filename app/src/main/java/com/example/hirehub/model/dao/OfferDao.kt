@@ -14,5 +14,5 @@ interface OfferDao {
     suspend fun insert(offer: Offer)
 
     @Query("DELETE FROM offer_table")
-    fun deleteAll()
+    suspend fun deleteAll()
 }

@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 // Each entity corresponds to a table that will be created in the database
 
-@Database(entities = arrayOf(User::class, Offer::class), version = 1)
+@Database(entities = [User::class, Offer::class], version = 1)
 abstract class HireHubRoomDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
@@ -41,6 +41,7 @@ abstract class HireHubRoomDatabase : RoomDatabase() {
                     )
                     .fallbackToDestructiveMigration()
                     .addCallback(OfferDatabaseCallback(scope))
+                    //.addCallback(UserDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
                 // return instance
@@ -60,7 +61,7 @@ abstract class HireHubRoomDatabase : RoomDatabase() {
                 // comment out the following line.
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
-                        populateDatabase(database.offerDao())
+                        populateDatabase(database.offerDao(),database.userDao())
                     }
                 }
             }
@@ -70,10 +71,14 @@ abstract class HireHubRoomDatabase : RoomDatabase() {
          * Populate the database in a new coroutine.
          * Start app with DB with several offers
          */
-        suspend fun populateDatabase(offerDao: OfferDao) {
+        suspend fun populateDatabase(offerDao: OfferDao, userDao: UserDao) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
             offerDao.deleteAll()
+
+            val user = User(1, "test", "test","test", "seeker", 18,
+                null, "I'm a seeker", null)
+            userDao.insert(user)
 
             var offer = Offer(1, "Offer One", "Management", "DreamCompany",
             "200$", "Grenoble", "This is the long description of the first offer. " +
@@ -98,5 +103,32 @@ abstract class HireHubRoomDatabase : RoomDatabase() {
                         "You are out best candidate if you know: Math, Probability, Law...", "Intern", "active")
             offerDao.insert(offer)
         }
+
+//        private class UserDatabaseCallback(
+//            private val scope: CoroutineScope
+//        ) : RoomDatabase.Callback() {
+//            override fun onCreate(db: SupportSQLiteDatabase) {
+//                super.onCreate(db)
+//                // If you want to keep the data through app restarts,
+//                // comment out the following line.
+//                INSTANCE?.let { database ->
+//                    scope.launch(Dispatchers.IO) {
+//                        populateDatabase(database.userDao())
+//                    }
+//                }
+//            }
+//        }
+//
+//        /**
+//         * Populate the database in a new coroutine.
+//         * Start app with DB with several offers
+//         */
+//        suspend fun populateDatabase( userDao: UserDao) {
+//
+//            val user = User(1, "test", "test","test", "seeker", 18,
+//                null, "I'm a seeker", null)
+//            userDao.insert(user)
+//
+//        }
     }
 }
