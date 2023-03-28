@@ -4,12 +4,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hirehub.HireHubApplication
+import com.example.hirehub.R
 import com.example.hirehub.databinding.ActivitySeekerHomeBinding
 import com.example.hirehub.model.OfferViewModel
 import com.example.hirehub.model.OfferViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SeekerHomeActivity : AppCompatActivity() {
 
@@ -52,7 +58,15 @@ class SeekerHomeActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+        binding.btnAccount.setOnClickListener {
+            val i = Intent(applicationContext, AccountActivity::class.java)
+            startActivity(i)
+        }
+
+        binding.btnSearch.setOnClickListener {
+            val i = Intent(applicationContext, SearchActivity::class.java)
+            startActivity(i)
+        }
+
     }
-
-
 }

@@ -15,4 +15,6 @@
     <string name="et_reg_pwd">Set your password</string>
     <string name="tv_accont">You already have an account?</string>
     <string name="tv_name">Your name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
