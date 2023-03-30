@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.hirehub" >
+    package="com.example.hirehub">
 
     <application
         android:name=".HireHubApplication"
@@ -13,25 +13,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HireHub"
-        tools:targetApi="31" >
+        tools:targetApi="31">
         <activity
-            android:name=".ui.HrHomeActivity"
+            android:name=".ui.hr.CreateOfferActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AccountActivity"
+            android:name=".ui.hr.HrHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SearchActivity"
+            android:name=".ui.seeker.AccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.seeker.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".ui.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SeekerHomeActivity"
+            android:name=".ui.seeker.SeekerHomeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

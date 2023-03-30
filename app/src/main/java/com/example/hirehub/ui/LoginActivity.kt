@@ -6,11 +6,11 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.example.hirehub.HireHubApplication
 import com.example.hirehub.databinding.ActivityLoginBinding
 import com.example.hirehub.model.UserViewModel
 import com.example.hirehub.model.UserViewModelFactory
+import com.example.hirehub.ui.seeker.SeekerHomeActivity
 
 
 class LoginActivity : AppCompatActivity() {

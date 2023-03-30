@@ -1,10 +1,8 @@
-package com.example.hirehub.ui
+package com.example.hirehub.ui.seeker
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.hirehub.R
-import com.example.hirehub.databinding.ActivityAccountBinding
 import com.example.hirehub.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {

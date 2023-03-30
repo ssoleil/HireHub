@@ -1,4 +1,4 @@
-package com.example.hirehub.ui
+package com.example.hirehub.ui.seeker
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
