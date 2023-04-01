@@ -3,7 +3,6 @@ package com.example.hirehub.model.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.lang.reflect.Constructor
 
 //@Entity(indices = [Index(value = ["user_username"],
 //    unique = true)])

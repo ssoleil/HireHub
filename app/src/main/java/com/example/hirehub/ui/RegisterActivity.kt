@@ -1,10 +1,10 @@
 package com.example.hirehub.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.hirehub.HireHubApplication
 import com.example.hirehub.databinding.ActivityRegisterBinding
 import com.example.hirehub.model.UserViewModel

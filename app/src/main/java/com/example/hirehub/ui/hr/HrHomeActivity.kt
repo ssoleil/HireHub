@@ -1,11 +1,9 @@
 package com.example.hirehub.ui.hr
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.hirehub.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.hirehub.databinding.ActivityHrHomeBinding
-import com.example.hirehub.databinding.ActivitySeekerHomeBinding
 
 class HrHomeActivity : AppCompatActivity() {
 

@@ -1,6 +1,5 @@
 package com.example.hirehub.model
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.hirehub.model.entities.User
 import kotlinx.coroutines.launch

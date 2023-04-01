@@ -2,10 +2,8 @@ package com.example.hirehub.model;
 
 
 import android.content.Context
-import kotlin.jvm.Volatile;
-
 import androidx.room.Database
-import androidx.room.Room;
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.hirehub.model.dao.OfferDao
