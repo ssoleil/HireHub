@@ -6,9 +6,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.hirehub.model.dao.OfferCategoryDao
 import com.example.hirehub.model.dao.OfferDao
+import com.example.hirehub.model.dao.PositionDao
 import com.example.hirehub.model.dao.UserDao
 import com.example.hirehub.model.entities.Offer
+import com.example.hirehub.model.entities.OfferCategory
+import com.example.hirehub.model.entities.Position
 import com.example.hirehub.model.entities.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,11 +20,13 @@ import kotlinx.coroutines.launch
 
 // Each entity corresponds to a table that will be created in the database
 
-@Database(entities = [User::class, Offer::class], version = 1)
+@Database(entities = [User::class, Offer::class, OfferCategory::class, Position::class], version = 2)
 abstract class HireHubRoomDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
     abstract fun offerDao(): OfferDao
+    abstract fun categoryDao(): OfferCategoryDao
+    abstract fun positionDao(): PositionDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
@@ -38,7 +44,7 @@ abstract class HireHubRoomDatabase : RoomDatabase() {
                         "hirehub_database"
                     )
                     .fallbackToDestructiveMigration()
-                    .addCallback(OfferDatabaseCallback(scope))
+                    //.addCallback(OfferDatabaseCallback(scope))
                     //.addCallback(UserDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
@@ -59,7 +65,7 @@ abstract class HireHubRoomDatabase : RoomDatabase() {
                 // comment out the following line.
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
-                        populateDatabase(database.offerDao(),database.userDao())
+                        populateDatabase(database.offerDao())
                     }
                 }
             }
@@ -69,14 +75,10 @@ abstract class HireHubRoomDatabase : RoomDatabase() {
          * Populate the database in a new coroutine.
          * Start app with DB with several offers
          */
-        suspend fun populateDatabase(offerDao: OfferDao, userDao: UserDao) {
+        suspend fun populateDatabase(offerDao: OfferDao) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
             offerDao.deleteAll()
-
-            val user = User(1, "test", "test","test", "seeker", 18,
-                null, "I'm a seeker", null)
-            userDao.insert(user)
 
             var offer = Offer(1, "Offer One", "Management", "DreamCompany",
             "200$", "Grenoble", "This is the long description of the first offer. " +
@@ -84,49 +86,6 @@ abstract class HireHubRoomDatabase : RoomDatabase() {
                         "Your tasks are: task1, task2, task3...", "Junior", "active")
             offerDao.insert(offer)
 
-            offer = Offer(2, "Offer Two", "Programming", "GreatSolutions",
-                "900$", "Paris", "We need to write something here for the second offer. " +
-                        "We offer you a nice chance to become a SQL Programmer in our marvellous company. " +
-                        "Required skills are: SQL, PHP, Agile...", "Middle", "active")
-            offerDao.insert(offer)
-
-            offer = Offer(3, "Nice offer!!!", "Programming", "GameTech",
-                "1800$", "Bern", "Description of the third offer. " +
-                        "It's a nice chance to become a Java Programmer in our marvellous company. " +
-                        "Required skills are: Java 5+ years, PHP, Agile...", "Senior", "active")
-            offerDao.insert(offer)
-
-            offer = Offer(4, "Hurry to become our employee", "Business", "SmartBusiness",
-                "667$", "London", "Take this option if you are a shark " +
-                        "You are out best candidate if you know: Math, Probability, Law...", "Intern", "active")
-            offerDao.insert(offer)
         }
-
-//        private class UserDatabaseCallback(
-//            private val scope: CoroutineScope
-//        ) : RoomDatabase.Callback() {
-//            override fun onCreate(db: SupportSQLiteDatabase) {
-//                super.onCreate(db)
-//                // If you want to keep the data through app restarts,
-//                // comment out the following line.
-//                INSTANCE?.let { database ->
-//                    scope.launch(Dispatchers.IO) {
-//                        populateDatabase(database.userDao())
-//                    }
-//                }
-//            }
-//        }
-//
-//        /**
-//         * Populate the database in a new coroutine.
-//         * Start app with DB with several offers
-//         */
-//        suspend fun populateDatabase( userDao: UserDao) {
-//
-//            val user = User(1, "test", "test","test", "seeker", 18,
-//                null, "I'm a seeker", null)
-//            userDao.insert(user)
-//
-//        }
     }
 }

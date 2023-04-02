@@ -29,4 +29,7 @@ interface UserDao {
     @Query("SELECT * FROM user_table WHERE user_username LIKE :name")
     fun findUserByUsername(name: String): LiveData<User?>
 
+    @Query("DELETE FROM user_table")
+    suspend fun deleteAll()
+
 }

@@ -21,6 +21,12 @@ class UserRepository(private val userDao: UserDao) {
         userDao.insert(user)
     }
 
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteAll() {
+        userDao.deleteAll()
+    }
+
      fun findUser(username: String, pwd: String) : LiveData<User?> =
         userDao.findUserByUsernameAndPwd(username, pwd)
 

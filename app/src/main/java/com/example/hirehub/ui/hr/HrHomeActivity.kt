@@ -23,8 +23,8 @@ class HrHomeActivity : AppCompatActivity() {
         }
 
         binding.btnAccount.setOnClickListener {
-//            val i = Intent(applicationContext, HrAccountActivity::class.java)
-//            startActivity(i)
+            val i = Intent(applicationContext, AccountHRActivity::class.java)
+            startActivity(i)
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.hirehub.model
 
 import androidx.lifecycle.*
+import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.User
 import kotlinx.coroutines.launch
 
@@ -8,15 +9,15 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     val allUsers: LiveData<List<User>> = userRepository.allUsers.asLiveData()
 
-        //todo: remember the user
-        //val currentUser: User
+    //todo: remember the user
+    //val currentUser: User
 
-        /**
-         * Launching a new coroutine to insert the data in a non-blocking way
-         */
-        fun insert(user: User) = viewModelScope.launch {
-            userRepository.insert(user)
-        }
+    /**
+     * Launching a new coroutine to insert the data in a non-blocking way
+     */
+    fun insert(user: User) = viewModelScope.launch {
+        userRepository.insert(user)
+    }
 
     fun findUser(username: String, pwd: String) : LiveData<User?> {
         return userRepository.findUser(username, pwd)
@@ -24,6 +25,10 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     fun findUser(username: String) : LiveData<User?> {
         return userRepository.findUser(username)
+    }
+
+    fun deleteAll() = viewModelScope.launch {
+        userRepository.deleteAll()
     }
 }
 

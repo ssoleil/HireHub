@@ -1,11 +1,12 @@
-package com.example.hirehub
+package com.example.hirehub.ui.hr
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.hirehub.R
 
-class AccountSeekerActivity : AppCompatActivity() {
+class RequestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_account_seeker)
+        setContentView(R.layout.activity_request)
     }
 }

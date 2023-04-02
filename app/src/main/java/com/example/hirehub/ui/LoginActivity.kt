@@ -8,8 +8,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hirehub.HireHubApplication
 import com.example.hirehub.databinding.ActivityLoginBinding
-import com.example.hirehub.model.UserViewModel
-import com.example.hirehub.model.UserViewModelFactory
+import com.example.hirehub.model.*
+import com.example.hirehub.model.entities.Offer
+import com.example.hirehub.model.entities.OfferCategory
+import com.example.hirehub.model.entities.Position
+import com.example.hirehub.ui.hr.HrHomeActivity
 import com.example.hirehub.ui.seeker.SeekerHomeActivity
 
 
@@ -19,6 +22,18 @@ class LoginActivity : AppCompatActivity() {
 
     private val userViewModel: UserViewModel by viewModels {
         UserViewModelFactory((application as HireHubApplication).userRepository)
+    }
+
+    private val offerViewModel: OfferViewModel by viewModels {
+        OfferViewModelFactory((application as HireHubApplication).offerRepository)
+    }
+
+    private val categoryViewModel: OfferCategoryViewModel by viewModels {
+        OfferCategoryViewModelFactory((application as HireHubApplication).categoryRepository)
+    }
+
+    private val positionViewModel: PositionViewModel by viewModels {
+        PositionViewModelFactory((application as HireHubApplication).positionRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +56,6 @@ class LoginActivity : AppCompatActivity() {
             else {
                 userViewModel.findUser(username.text.toString(), pwd.text.toString()).observe(this) { user ->
                     //if we don't have an account
-                    Log.d("LoginActivity", user?.userName.toString())
                     when {
                         user == null -> {
                             Toast.makeText(this, "User is not found", Toast.LENGTH_SHORT).show()
@@ -53,12 +67,8 @@ class LoginActivity : AppCompatActivity() {
                         }
                         user.userStatus == "hr" -> {
                             //todo: save current user
-                            //todo: hr home screen
-//                            val i = Intent(applicationContext, SeekerHomeActivity::class.java)
-//                            startActivity(i)
-                        }
-                        else -> {
-                            Log.d("LoginActivity", "else")
+                            val i = Intent(applicationContext, HrHomeActivity::class.java)
+                            startActivity(i)
                         }
                     }
                 }
@@ -68,6 +78,54 @@ class LoginActivity : AppCompatActivity() {
         binding.tvRegister.setOnClickListener {
             val i = Intent(applicationContext, RegisterActivity::class.java)
             startActivity(i)
+        }
+
+        binding.btnDb.setOnClickListener {
+
+            userViewModel.deleteAll()
+
+//            categoryViewModel.insert(OfferCategory(0, "programming"))
+//            categoryViewModel.insert(OfferCategory(0, "management"))
+//            categoryViewModel.insert(OfferCategory(0, "languages"))
+//            categoryViewModel.insert(OfferCategory(0, "mathematics"))
+//            categoryViewModel.insert(OfferCategory(0, "design"))
+//            categoryViewModel.insert(OfferCategory(0, "sales"))
+//            categoryViewModel.insert(OfferCategory(0, "banking"))
+//            categoryViewModel.insert(OfferCategory(0, "finances"))
+//            categoryViewModel.insert(OfferCategory(0, "smm"))
+//
+//            positionViewModel.insert(Position(0, "Intern"))
+//            positionViewModel.insert(Position(0, "Junior"))
+//            positionViewModel.insert(Position(0, "Middle"))
+//            positionViewModel.insert(Position(0, "Senior"))
+//            positionViewModel.insert(Position(0, "Team Lead"))
+//            positionViewModel.insert(Position(0, "Department Head"))
+//            positionViewModel.insert(Position(0, "Regular Employee"))
+//            positionViewModel.insert(Position(0, "CEO"))
+//            positionViewModel.insert(Position(0, "Financial Director"))
+
+            var offer = Offer(1, "Offer One", "Management", "DreamCompany",
+                "200$", "Grenoble", "This is the long description of the first offer. " +
+                        "We suggest you a great opportunity to become a product manager in our marvellous company. " +
+                        "Your tasks are: task1, task2, task3...", "Junior", "active")
+            offerViewModel.insert(offer)
+
+            offer = Offer(2, "Offer Two", "Programming", "GreatSolutions",
+                "900$", "Paris", "We need to write something here for the second offer. " +
+                        "We offer you a nice chance to become a SQL Programmer in our marvellous company. " +
+                        "Required skills are: SQL, PHP, Agile...", "Middle", "active")
+            offerViewModel.insert(offer)
+
+            offer = Offer(3, "Nice offer!!!", "Programming", "GameTech",
+                "1800$", "Bern", "Description of the third offer. " +
+                        "It's a nice chance to become a Java Programmer in our marvellous company. " +
+                        "Required skills are: Java 5+ years, PHP, Agile...", "Senior", "active")
+            offerViewModel.insert(offer)
+
+            offer = Offer(4, "Hurry to become our employee", "Business", "SmartBusiness",
+                "667$", "London", "Take this option if you are a shark " +
+                        "You are out best candidate if you know: Math, Probability, Law...", "Intern", "active")
+            offerViewModel.insert(offer)
         }
     }
 }

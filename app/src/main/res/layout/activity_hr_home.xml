@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/purple_500"
-            app:title="Offers for you"
+            app:title="Requests for you"
             app:titleTextColor="@color/white"
             android:minHeight="?attr/actionBarSize">
 

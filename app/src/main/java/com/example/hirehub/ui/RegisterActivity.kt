@@ -10,6 +10,7 @@ import com.example.hirehub.databinding.ActivityRegisterBinding
 import com.example.hirehub.model.UserViewModel
 import com.example.hirehub.model.UserViewModelFactory
 import com.example.hirehub.model.entities.User
+import com.example.hirehub.ui.hr.HrHomeActivity
 import com.example.hirehub.ui.seeker.SeekerHomeActivity
 
 class RegisterActivity : AppCompatActivity() {
@@ -72,8 +73,7 @@ class RegisterActivity : AppCompatActivity() {
                             userViewModel.insert(newUser)
 
                             //todo: save current user
-                            //todo: change to hr home screen
-                            val i = Intent(applicationContext, SeekerHomeActivity::class.java)
+                            val i = Intent(applicationContext, HrHomeActivity::class.java)
                             startActivity(i)
                         }
                         else -> {
