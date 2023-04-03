@@ -12,6 +12,7 @@
     <string name="register">Register</string>
     <string name="et_reg_username">Choose your username</string>
     <string name="et_reg_name">Choose your name</string>
+    <string name="et_offer_name">Offer name</string>
     <string name="et_reg_pwd">Set your password</string>
     <string name="tv_accont">You already have an account?</string>
     <string name="tv_name">Your name</string>

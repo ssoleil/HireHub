@@ -18,6 +18,12 @@
             android:name=".ui.hr.RequestActivity"
             android:exported="false" />
         <activity
+            android:name=".SeekerRequestsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OfferDescriptionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.hr.AccountHRActivity"
             android:exported="false" />
         <activity
