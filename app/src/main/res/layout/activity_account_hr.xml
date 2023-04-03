@@ -51,7 +51,7 @@
 
 
             <ImageButton
-                android:id="@+id/btn_offers"
+                android:id="@+id/btn_log_out"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -68,7 +68,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -80,7 +80,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_login" />
 
     <ImageButton
-        android:id="@+id/btn_edit"
+        android:id="@+id/btn_edit_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -89,9 +89,9 @@
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:src="@drawable/ic_edit"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/tv_name"
         app:layout_constraintVertical_bias="0.482" />
 
     <TextView
@@ -104,10 +104,10 @@
         android:text="Company"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tv_company_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -119,7 +119,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <ImageButton
-        android:id="@+id/btn_edit2"
+        android:id="@+id/btn_edit_company"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -128,9 +128,9 @@
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:src="@drawable/ic_edit"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_company_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/tv_company_name"
         app:layout_constraintVertical_bias="0.523" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

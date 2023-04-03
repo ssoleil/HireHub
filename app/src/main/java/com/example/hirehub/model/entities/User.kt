@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
 class User(
 
     @PrimaryKey(autoGenerate = true) val user_id: Int = 0,
-    @ColumnInfo(name = "user_name") val userName: String,
+    @ColumnInfo(name = "user_name") var userName: String,
     @ColumnInfo(name = "user_username") val userUsername: String,
     @ColumnInfo(name = "user_pwd") val userPwd: String,
     //only 2 values - "seeker", "hr"
@@ -19,6 +19,6 @@ class User(
     @ColumnInfo(name = "user_age") val userAge: Int?,
     @ColumnInfo(name = "user_phone") val userPhone: String?,
     @ColumnInfo(name = "user_self_description") val userSelfDescription: String?,
-    @ColumnInfo(name = "user_company") val userCompany: String?
+    @ColumnInfo(name = "user_company") var userCompany: String?
 
 )

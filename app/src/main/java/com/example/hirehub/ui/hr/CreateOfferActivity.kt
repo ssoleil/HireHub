@@ -1,8 +1,11 @@
 package com.example.hirehub.ui.hr
 
 import android.os.Bundle
+import android.text.InputType
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.activity.viewModels
@@ -12,7 +15,9 @@ import com.example.hirehub.HireHubApplication
 import com.example.hirehub.R
 import com.example.hirehub.databinding.ActivityCreateOfferBinding
 import com.example.hirehub.model.*
+import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.OfferCategory
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 
 class CreateOfferActivity : AppCompatActivity() {
 
@@ -24,6 +29,14 @@ class CreateOfferActivity : AppCompatActivity() {
 
     private val positionViewModel: PositionViewModel by viewModels {
         PositionViewModelFactory((application as HireHubApplication).positionRepository)
+    }
+
+    private val userViewModel: UserViewModel by viewModels {
+        UserViewModelFactory((application as HireHubApplication).userRepository)
+    }
+
+    private val offerViewModel: OfferViewModel by viewModels {
+        OfferViewModelFactory((application as HireHubApplication).offerRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +53,7 @@ class CreateOfferActivity : AppCompatActivity() {
 
             val categoryArrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, categoriesStr)
             binding.dropCategory.setAdapter(categoryArrayAdapter)
+            (binding.dropCategory as AutoCompleteTextView).inputType = InputType.TYPE_NULL
         }
 
         positionViewModel.allPositions.observe(this) {
@@ -50,24 +64,44 @@ class CreateOfferActivity : AppCompatActivity() {
 
             val positionArrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, positionsStr)
             binding.dropPosition.setAdapter(positionArrayAdapter)
+            (binding.dropPosition as AutoCompleteTextView).inputType = InputType.TYPE_NULL
         }
 
 
         binding.btnPost.setOnClickListener {
             val offerName = binding.etOfferName
-            val location = binding.etLocation
-            val salary = binding.etSalary
-            val category = binding.dropCategory
-            val position = binding.dropPosition
+            val location = binding.etLocation.text.toString()
+            val salary = binding.etSalary.text.toString()
+            val category = binding.dropCategory.text.toString()
+            val position = binding.dropPosition.text.toString()
+            val description = binding.etDescription.text.toString()
 
-//            if (offerName.text.isEmpty()) {
-//                offerName.error = "Offer name is required!"
+            if (offerName.text.isEmpty()) {
+                offerName.error = "Offer name is required!"
+//            } else if (!category.isSelected) {                //values might be null or ""
+//                category.error = "Category is required"
 //            } else if (location.text.isEmpty()) {
 //                location.error = "Location is required"
+//            } else if (!position.isSelected) {
+//                position.error = "Position is required"
 //            } else if (salary.text.isEmpty()) {
 //                salary.error = "Salary is required"
-//            } else {
+            } else {
+                //todo: find category id, not String
+                val company = userViewModel.currentUser?.userCompany ?: ""
+                val offer = Offer(0, offerName.text.toString(), category,
+                    company, salary, location, description, position, "active")
+
+                //todo: add to my offers
+                Log.d("CreateOffer", offer.offerName + "-" + offer.offerCity + "-" + offer.offerCategoryId +
+                        "-" + offer.offerCompanyName + "-" + offer.offerPosition + "-" + offer.offerDescription)
+
+                //todo: change ui
+                offerViewModel.insert(offer)
+                finish()
+            }
         }
+
     }
 
 }

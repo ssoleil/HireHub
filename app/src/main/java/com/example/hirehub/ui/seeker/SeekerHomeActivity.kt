@@ -10,6 +10,7 @@ import com.example.hirehub.HireHubApplication
 import com.example.hirehub.databinding.ActivitySeekerHomeBinding
 import com.example.hirehub.model.OfferViewModel
 import com.example.hirehub.model.OfferViewModelFactory
+import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.ui.LoginActivity
 
 class SeekerHomeActivity : AppCompatActivity() {
@@ -45,6 +46,12 @@ class SeekerHomeActivity : AppCompatActivity() {
         // in the foreground.
         offerViewModel.allOffers.observe(this) { offers ->
             // Update the cached copy of the words in the adapter.
+            //todo: check null members
+//            var offersParsed = offers.toMutableList()
+//            for( offer in offersParsed)
+//                if (offer.offerCity == null) {
+//                    offer.offerCity = ""
+//                }
             offers.let { adapter.submitList(it) }
         }
 

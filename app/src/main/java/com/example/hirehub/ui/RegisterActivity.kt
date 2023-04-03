@@ -72,8 +72,9 @@ class RegisterActivity : AppCompatActivity() {
                             }
                             userViewModel.insert(newUser)
 
-                            //todo: save current user
+                            userViewModel.currentUser = newUser
                             val i = Intent(applicationContext, HrHomeActivity::class.java)
+                            i.putExtra("currentUserId", newUser.userUsername)
                             startActivity(i)
                         }
                         else -> {
