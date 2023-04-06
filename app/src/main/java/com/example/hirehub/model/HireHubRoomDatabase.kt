@@ -14,13 +14,15 @@ import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.OfferCategory
 import com.example.hirehub.model.entities.Position
 import com.example.hirehub.model.entities.User
+import com.example.hirehub.model.entities.relations.UserWithOffer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 // Each entity corresponds to a table that will be created in the database
 
-@Database(entities = [User::class, Offer::class, OfferCategory::class, Position::class], version = 2)
+@Database(entities = [User::class, Offer::class, OfferCategory::class,
+    UserWithOffer::class, Position::class], version = 2)
 abstract class HireHubRoomDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
