@@ -15,6 +15,10 @@ class OfferCategoryViewModel(private val offerCategoryRepository: OfferCategoryR
     fun insert(offerCategory: OfferCategory) = viewModelScope.launch {
         offerCategoryRepository.insert(offerCategory)
     }
+
+    fun deleteAll() = viewModelScope.launch {
+        offerCategoryRepository.deleteAll()
+    }
 }
 
 class OfferCategoryViewModelFactory(private val offerCategoryRepository: OfferCategoryRepository) : ViewModelProvider.Factory {

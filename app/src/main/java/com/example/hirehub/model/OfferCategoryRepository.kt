@@ -16,4 +16,10 @@ class OfferCategoryRepository(private val offerCategoryDao: OfferCategoryDao) {
     suspend fun insert(offerCategory: OfferCategory) {
         offerCategoryDao.insert(offerCategory)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteAll() {
+        offerCategoryDao.deleteAll()
+    }
 }

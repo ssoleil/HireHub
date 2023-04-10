@@ -21,7 +21,7 @@ class SearchActivity : AppCompatActivity() {
         }
 
         binding.btnAccount.setOnClickListener {
-            val i = Intent(applicationContext, AccountActivity::class.java)
+            val i = Intent(applicationContext, AccountSeekerActivity::class.java)
             startActivity(i)
         }
 

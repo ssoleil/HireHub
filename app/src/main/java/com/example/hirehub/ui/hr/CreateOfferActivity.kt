@@ -72,7 +72,7 @@ class CreateOfferActivity : AppCompatActivity() {
             val offerName = binding.etOfferName
             val location = binding.etLocation.text.toString()
             val salary = binding.etSalary.text.toString()
-            val category = binding.dropCategory.text.toString()
+            val category_id = binding.dropCategory.id+1
             val position = binding.dropPosition.text.toString()
             val description = binding.etDescription.text.toString()
 
@@ -89,7 +89,7 @@ class CreateOfferActivity : AppCompatActivity() {
             } else {
                 //todo: find category id, not String
                 val company = userViewModel.currentUser?.userCompany ?: ""
-                val offer = Offer(0, offerName.text.toString(), category,
+                val offer = Offer(0, offerName.text.toString(), category_id,
                     company, salary, location, description, position, "active")
 
                 //todo: add to my offers

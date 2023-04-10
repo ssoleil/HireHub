@@ -18,7 +18,7 @@
             android:name=".ui.hr.RequestActivity"
             android:exported="false" />
         <activity
-            android:name=".SeekerRequestsActivity"
+            android:name=".ui.seeker.SeekerRequestsActivity"
             android:exported="false" />
         <activity
             android:name=".OfferDescriptionsActivity"

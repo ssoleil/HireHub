@@ -15,4 +15,7 @@ class HireHubApplication : Application() {
     val userRepository by lazy { UserRepository(database.userDao()) }
     val categoryRepository by lazy { OfferCategoryRepository(database.categoryDao()) }
     val positionRepository by lazy { PositionRepository(database.positionDao()) }
+    val skillRepository by lazy { SkillRepository(database.skillDao()) }
+    val experienceRepository by lazy { ExperienceRepository(database.experienceDao()) }
+    val educationRepository by lazy { EducationRepository(database.educationDao()) }
 }

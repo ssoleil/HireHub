@@ -44,6 +44,7 @@ class SeekerHomeActivity : AppCompatActivity() {
         // Add an observer on the LiveData
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
+//        offerViewModel.allOfferWithCategoryOffer.observe(this) { offers ->
         offerViewModel.allOffers.observe(this) { offers ->
             // Update the cached copy of the words in the adapter.
             //todo: check null members
@@ -61,7 +62,7 @@ class SeekerHomeActivity : AppCompatActivity() {
         }
 
         binding.btnAccount.setOnClickListener {
-            val i = Intent(applicationContext, AccountActivity::class.java)
+            val i = Intent(applicationContext, AccountSeekerActivity::class.java)
             startActivity(i)
         }
 
@@ -70,5 +71,9 @@ class SeekerHomeActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+        binding.btnOffers.setOnClickListener {
+            val i = Intent(applicationContext, SeekerRequestsActivity::class.java)
+            startActivity(i)
+        }
     }
 }

@@ -12,7 +12,7 @@ interface UserDao {
     @Query("SELECT * FROM user_table")
     fun getAllUser(): Flow<List<User>>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(user: User)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)

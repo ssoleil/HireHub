@@ -88,6 +88,11 @@ class LoginActivity : AppCompatActivity() {
 
             setUpDB()
         }
+
+        binding.btnDbClean.setOnClickListener {
+
+            cleanDB()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -95,6 +100,13 @@ class LoginActivity : AppCompatActivity() {
 
         Log.d("HrAccount", "Update ${userViewModel.currentUser?.userUsername}")
         outState.putCharSequence("currentUsername", userViewModel.currentUser?.userUsername)
+    }
+
+    private fun cleanDB() {
+        userViewModel.deleteAll()
+        offerViewModel.deleteAll()
+        categoryViewModel.deleteAll()
+        positionViewModel.deleteAll()
     }
 
     private fun setUpDB() {
@@ -128,27 +140,27 @@ class LoginActivity : AppCompatActivity() {
         positionViewModel.insert(Position(0, "CEO"))
         positionViewModel.insert(Position(0, "Financial Director"))
 
-        var offer = Offer(1, "Offer One", "Management", "DreamCompany",
+        var offer = Offer(1, "Offer One", 1, "DreamCompany",
             "200$", "Grenoble", "This is the long description of the first offer. " +
                     "We suggest you a great opportunity to become a product manager in our marvellous company. " +
                     "Your tasks are: task1, task2, task3...", "Junior", "active")
         offerViewModel.insert(offer)
 
-        offer = Offer(2, "Offer Two", "Programming", "GreatSolutions",
-            "900$", "Paris", "We need to write something here for the second offer. " +
-                    "We offer you a nice chance to become a SQL Programmer in our marvellous company. " +
-                    "Required skills are: SQL, PHP, Agile...", "Middle", "active")
-        offerViewModel.insert(offer)
-
-        offer = Offer(3, "Nice offer!!!", "Programming", "GameTech",
-            "1800$", "Bern", "Description of the third offer. " +
-                    "It's a nice chance to become a Java Programmer in our marvellous company. " +
-                    "Required skills are: Java 5+ years, PHP, Agile...", "Senior", "active")
-        offerViewModel.insert(offer)
-
-        offer = Offer(4, "Hurry to become our employee", "Business", "SmartBusiness",
-            "667$", "London", "Take this option if you are a shark " +
-                    "You are out best candidate if you know: Math, Probability, Law...", "Intern", "active")
-        offerViewModel.insert(offer)
+//        offer = Offer(2, "Offer Two", 2, "GreatSolutions",
+//            "900$", "Paris", "We need to write something here for the second offer. " +
+//                    "We offer you a nice chance to become a SQL Programmer in our marvellous company. " +
+//                    "Required skills are: SQL, PHP, Agile...", "Middle", "active")
+//        offerViewModel.insert(offer)
+//
+//        offer = Offer(3, "Nice offer!!!", 2, "GameTech",
+//            "1800$", "Bern", "Description of the third offer. " +
+//                    "It's a nice chance to become a Java Programmer in our marvellous company. " +
+//                    "Required skills are: Java 5+ years, PHP, Agile...", "Senior", "active")
+//        offerViewModel.insert(offer)
+//
+//        offer = Offer(4, "Hurry to become our employee", 3, "SmartBusiness",
+//            "667$", "London", "Take this option if you are a shark " +
+//                    "You are out best candidate if you know: Math, Probability, Law...", "Intern", "active")
+//        offerViewModel.insert(offer)
     }
 }

@@ -15,6 +15,10 @@ class PositionViewModel(private val positionRepository: PositionRepository) : Vi
     fun insert(position: Position) = viewModelScope.launch {
         positionRepository.insert(position)
     }
+
+    fun deleteAll() = viewModelScope.launch {
+        positionRepository.deleteAll()
+    }
 }
 
 class PositionViewModelFactory(private val positionRepository: PositionRepository) : ViewModelProvider.Factory {

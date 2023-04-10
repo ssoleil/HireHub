@@ -14,7 +14,7 @@ interface OfferCategoryDao {
     @Query("SELECT * FROM offer_category_table")
     fun getAllOfferCategory(): Flow<List<OfferCategory>>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(offerCategory: OfferCategory)
 
     @Query("DELETE FROM offer_category_table")

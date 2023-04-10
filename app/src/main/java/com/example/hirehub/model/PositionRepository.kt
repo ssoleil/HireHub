@@ -16,4 +16,10 @@ class PositionRepository(private val positionDao: PositionDao) {
     suspend fun insert(position: Position) {
         positionDao.insert(position)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteAll() {
+        positionDao.deleteAll()
+    }
 }
