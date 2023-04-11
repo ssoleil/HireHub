@@ -9,8 +9,7 @@ import kotlinx.coroutines.launch
 
 class OfferViewModel(private val offerRepository: OfferRepository) : ViewModel() {
 
-//    val allOffers: LiveData<List<Offer>> = offerRepository.allOffers.asLiveData()
-    val allOfferWithCategoryOffer: LiveData<List<OfferWithCategory>> = offerRepository.allOffersWithCategories.asLiveData()
+    val allOfferWithCategory: LiveData<List<OfferWithCategory>> = offerRepository.allOffersWithCategories.asLiveData()
 
     /**
      * Launching a new coroutine to insert the data in a non-blocking way

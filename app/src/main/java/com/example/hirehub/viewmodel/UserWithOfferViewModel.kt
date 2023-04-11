@@ -2,6 +2,7 @@ package com.example.hirehub.model
 
 import androidx.lifecycle.*
 import com.example.hirehub.model.entities.User
+import com.example.hirehub.model.entities.relations.UserOfferPair
 import com.example.hirehub.model.entities.relations.UserWithOffer
 import com.example.hirehub.model.repository.UserRepository
 import com.example.hirehub.model.repository.UserWithOfferRepository
@@ -13,7 +14,7 @@ class UserWithOfferViewModel(private val userWithOfferRepository: UserWithOfferR
         userWithOfferRepository.insert(join)
     }
 
-    fun findUser(user_id: Int) : LiveData<List<UserWithOffer>?> {
+    fun findUser(user_id: Int) : LiveData<UserOfferPair?> {
         return userWithOfferRepository.findOffersByUser(user_id)
     }
 

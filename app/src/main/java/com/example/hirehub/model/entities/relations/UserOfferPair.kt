@@ -11,7 +11,7 @@ data class UserOfferPair (
     var user: User,
     @Relation(
         parentColumn = "user_id",
-        entity = User::class,
+        entity = Offer::class,
         entityColumn = "offer_id",
         associateBy = Junction(
             value = UserWithOffer::class,

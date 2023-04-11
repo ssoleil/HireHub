@@ -2,7 +2,6 @@ package com.example.hirehub.ui.seeker
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,7 +10,6 @@ import com.example.hirehub.HireHubApplication
 import com.example.hirehub.databinding.ActivitySeekerHomeBinding
 import com.example.hirehub.model.OfferViewModel
 import com.example.hirehub.model.OfferViewModelFactory
-import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.OfferWithCategory
 import com.example.hirehub.model.entities.User
 import com.example.hirehub.ui.LoginActivity
@@ -58,7 +56,7 @@ class SeekerHomeActivity : AppCompatActivity() {
         })
 
 
-        offerViewModel.allOfferWithCategoryOffer.observe(this) { offers ->
+        offerViewModel.allOfferWithCategory.observe(this) { offers ->
 //        offerViewModel.allOffers.observe(this) { offers ->
             offers.let { adapter.submitList(it) }
         }
@@ -80,6 +78,7 @@ class SeekerHomeActivity : AppCompatActivity() {
 
         binding.btnOffers.setOnClickListener {
             val i = Intent(applicationContext, SeekerRequestsActivity::class.java)
+            i.putExtra("currentUser", currentUser as Serializable)
             startActivity(i)
         }
     }
