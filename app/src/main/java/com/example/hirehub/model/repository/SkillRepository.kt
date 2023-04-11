@@ -1,4 +1,4 @@
-package com.example.hirehub.model
+package com.example.hirehub.model.repository
 
 import androidx.annotation.WorkerThread
 import com.example.hirehub.model.dao.OfferCategoryDao

@@ -13,7 +13,7 @@ interface EducationDao {
     @Query("SELECT * FROM education_table")
     fun getAllEducations(): Flow<List<Education>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(education: Education)
 
     @Query("DELETE FROM education_table")

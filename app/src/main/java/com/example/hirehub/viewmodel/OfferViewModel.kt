@@ -2,13 +2,15 @@ package com.example.hirehub.model
 
 import androidx.lifecycle.*
 import com.example.hirehub.model.entities.Offer
+import com.example.hirehub.model.entities.OfferWithCategory
+import com.example.hirehub.model.repository.OfferRepository
 //import com.example.hirehub.model.entities.OfferWithCategoryOffer
 import kotlinx.coroutines.launch
 
 class OfferViewModel(private val offerRepository: OfferRepository) : ViewModel() {
 
-    val allOffers: LiveData<List<Offer>> = offerRepository.allOffers.asLiveData()
-//    val allOfferWithCategoryOffer: LiveData<List<OfferWithCategoryOffer>> = offerRepository.allOffersWithCategories.asLiveData()
+//    val allOffers: LiveData<List<Offer>> = offerRepository.allOffers.asLiveData()
+    val allOfferWithCategoryOffer: LiveData<List<OfferWithCategory>> = offerRepository.allOffersWithCategories.asLiveData()
 
     /**
      * Launching a new coroutine to insert the data in a non-blocking way

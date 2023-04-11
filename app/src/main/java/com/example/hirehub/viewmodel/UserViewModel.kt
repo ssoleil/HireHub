@@ -1,16 +1,13 @@
 package com.example.hirehub.model
 
 import androidx.lifecycle.*
-import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.User
+import com.example.hirehub.model.repository.UserRepository
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     val allUsers: LiveData<List<User>> = userRepository.allUsers.asLiveData()
-
-    //todo: remember the user
-    var currentUser: User? = null
 
     /**
      * Launching a new coroutine to insert the data in a non-blocking way

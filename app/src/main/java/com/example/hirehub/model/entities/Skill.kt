@@ -5,15 +5,13 @@ import androidx.room.*
 @Entity(tableName = "skill_table",
         indices = [Index(value = ["skill_name"], unique = true)],
         foreignKeys = [
-            androidx.room.ForeignKey(
+            ForeignKey(
                 entity = OfferCategory::class,
                 childColumns = ["skill_category_offer_id"],
                 parentColumns = ["categoryId"],
                 onDelete = ForeignKey.CASCADE
             )
         ])
-
-
 class Skill (
 
     @PrimaryKey(autoGenerate = true) val skillId: Int = 0,

@@ -7,6 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.hirehub.model.dao.*
+import com.example.hirehub.model.dao.*
 import com.example.hirehub.model.entities.*
 import com.example.hirehub.model.dao.OfferCategoryDao
 import com.example.hirehub.model.dao.OfferDao
@@ -16,17 +17,21 @@ import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.OfferCategory
 import com.example.hirehub.model.entities.Position
 import com.example.hirehub.model.entities.User
+import com.example.hirehub.model.entities.relations.UserOfferPair
+import com.example.hirehub.model.entities.relations.UserWithOffer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 // Each entity corresponds to a table that will be created in the database
 
-@Database(entities = [User::class, Offer::class, OfferCategory::class,
+@Database(entities = [User::class, Offer::class, OfferCategory::class, UserWithOffer::class,
     Position::class, Education::class, Experience::class, Skill::class], version = 6)
+
 abstract class HireHubRoomDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+    abstract fun userWithOfferDao(): UserWithOfferDao
     abstract fun offerDao(): OfferDao
     abstract fun categoryDao(): OfferCategoryDao
     abstract fun positionDao(): PositionDao
@@ -60,39 +65,39 @@ abstract class HireHubRoomDatabase : RoomDatabase() {
             }
         }
 
-        private class OfferDatabaseCallback(
-            private val scope: CoroutineScope
-        ) : RoomDatabase.Callback() {
-            /**
-             * Override the onCreate method to populate the database.
-             */
-            override fun onCreate(db: SupportSQLiteDatabase) {
-                super.onCreate(db)
-                // If you want to keep the data through app restarts,
-                // comment out the following line.
-                INSTANCE?.let { database ->
-                    scope.launch(Dispatchers.IO) {
-                        populateDatabase(database.offerDao())
-                    }
-                }
-            }
-        }
+//        private class OfferDatabaseCallback(
+//            private val scope: CoroutineScope
+//        ) : RoomDatabase.Callback() {
+//            /**
+//             * Override the onCreate method to populate the database.
+//             */
+//            override fun onCreate(db: SupportSQLiteDatabase) {
+//                super.onCreate(db)
+//                // If you want to keep the data through app restarts,
+//                // comment out the following line.
+//                INSTANCE?.let { database ->
+//                    scope.launch(Dispatchers.IO) {
+//                        populateDatabase(database.offerDao())
+//                    }
+//                }
+//            }
+//        }
 
         /**
          * Populate the database in a new coroutine.
          * Start app with DB with several offers
          */
-        suspend fun populateDatabase(offerDao: OfferDao) {
-            // Start the app with a clean database every time.
-            // Not needed if you only populate on creation.
-            offerDao.deleteAll()
-
-            var offer = Offer(1, "Offer One", 1, "DreamCompany",
-            "200$", "Grenoble", "This is the long description of the first offer. " +
-                        "We suggest you a great opportunity to become a product manager in our marvellous company. " +
-                        "Your tasks are: task1, task2, task3...", "Junior", "active")
-            offerDao.insert(offer)
-
-        }
+//        suspend fun populateDatabase(offerDao: OfferDao) {
+//            // Start the app with a clean database every time.
+//            // Not needed if you only populate on creation.
+//            offerDao.deleteAll()
+//
+//            var offer = Offer(1, "Offer One", "Management", "DreamCompany",
+//            "200$", "Grenoble", "This is the long description of the first offer. " +
+//                        "We suggest you a great opportunity to become a product manager in our marvellous company. " +
+//                        "Your tasks are: task1, task2, task3...", "Junior", "active")
+//            offerDao.insert(offer)
+//
+//        }
     }
 }

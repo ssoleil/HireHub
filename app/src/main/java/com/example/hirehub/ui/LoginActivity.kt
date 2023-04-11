@@ -15,6 +15,7 @@ import com.example.hirehub.model.entities.Position
 import com.example.hirehub.model.entities.User
 import com.example.hirehub.ui.hr.HrHomeActivity
 import com.example.hirehub.ui.seeker.SeekerHomeActivity
+import java.io.Serializable
 
 
 class LoginActivity : AppCompatActivity() {
@@ -62,16 +63,15 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this, "User is not found", Toast.LENGTH_SHORT).show()
                         }
                         user.userStatus == "seeker" -> {
-                            userViewModel.currentUser = user
                             val i = Intent(applicationContext, SeekerHomeActivity::class.java)
-                            i.putExtra("currentUserId", user.userUsername)
+                            i.putExtra("currentUser", user as Serializable)
+                            //i.putExtra("user_id", user.user_id)
                             startActivity(i)
                         }
                         user.userStatus == "hr" -> {
-                            userViewModel.currentUser = user
-                            Log.d("currentUserId", user.userUsername)
                             val i = Intent(applicationContext, HrHomeActivity::class.java)
-                            i.putExtra("currentUserId", user.userUsername)
+                            i.putExtra("currentUser", user as Serializable)
+                            //i.putExtra("currentUserId", user.userUsername)
                             startActivity(i)
                         }
                     }
@@ -95,13 +95,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        Log.d("HrAccount", "Update ${userViewModel.currentUser?.userUsername}")
-        outState.putCharSequence("currentUsername", userViewModel.currentUser?.userUsername)
-    }
-
     private fun cleanDB() {
         userViewModel.deleteAll()
         offerViewModel.deleteAll()
@@ -110,35 +103,34 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setUpDB() {
-        //userViewModel.deleteAll()
 
-        userViewModel.insert(User(0, "test", "test",
+        userViewModel.insert(User(1, "test", "test",
             "test", "seeker", null, null, null,
             null))
 
-        userViewModel.insert(User(0, "hr", "hr",
+        userViewModel.insert(User(2, "hr", "hr",
             "hr", "hr", null, null, null,
             null))
 
-        categoryViewModel.insert(OfferCategory(0, "programming"))
-        categoryViewModel.insert(OfferCategory(0, "management"))
-        categoryViewModel.insert(OfferCategory(0, "languages"))
-        categoryViewModel.insert(OfferCategory(0, "mathematics"))
-        categoryViewModel.insert(OfferCategory(0, "design"))
-        categoryViewModel.insert(OfferCategory(0, "sales"))
-        categoryViewModel.insert(OfferCategory(0, "banking"))
-        categoryViewModel.insert(OfferCategory(0, "finances"))
-        categoryViewModel.insert(OfferCategory(0, "smm"))
+        categoryViewModel.insert(OfferCategory(1, "programming"))
+        categoryViewModel.insert(OfferCategory(2, "management"))
+        categoryViewModel.insert(OfferCategory(3, "languages"))
+        categoryViewModel.insert(OfferCategory(4, "mathematics"))
+        categoryViewModel.insert(OfferCategory(5, "design"))
+        categoryViewModel.insert(OfferCategory(6, "sales"))
+        categoryViewModel.insert(OfferCategory(7, "banking"))
+        categoryViewModel.insert(OfferCategory(8, "finances"))
+        categoryViewModel.insert(OfferCategory(9, "smm"))
 
-        positionViewModel.insert(Position(0, "Intern"))
-        positionViewModel.insert(Position(0, "Junior"))
-        positionViewModel.insert(Position(0, "Middle"))
-        positionViewModel.insert(Position(0, "Senior"))
-        positionViewModel.insert(Position(0, "Team Lead"))
-        positionViewModel.insert(Position(0, "Department Head"))
-        positionViewModel.insert(Position(0, "Regular Employee"))
-        positionViewModel.insert(Position(0, "CEO"))
-        positionViewModel.insert(Position(0, "Financial Director"))
+        positionViewModel.insert(Position(1, "Intern"))
+        positionViewModel.insert(Position(2, "Junior"))
+        positionViewModel.insert(Position(3, "Middle"))
+        positionViewModel.insert(Position(4, "Senior"))
+        positionViewModel.insert(Position(5, "Team Lead"))
+        positionViewModel.insert(Position(6, "Department Head"))
+        positionViewModel.insert(Position(7, "Regular Employee"))
+        positionViewModel.insert(Position(8, "CEO"))
+        positionViewModel.insert(Position(9, "Financial Director"))
 
         var offer = Offer(1, "Offer One", 1, "DreamCompany",
             "200$", "Grenoble", "This is the long description of the first offer. " +
@@ -146,21 +138,21 @@ class LoginActivity : AppCompatActivity() {
                     "Your tasks are: task1, task2, task3...", "Junior", "active")
         offerViewModel.insert(offer)
 
-//        offer = Offer(2, "Offer Two", 2, "GreatSolutions",
-//            "900$", "Paris", "We need to write something here for the second offer. " +
-//                    "We offer you a nice chance to become a SQL Programmer in our marvellous company. " +
-//                    "Required skills are: SQL, PHP, Agile...", "Middle", "active")
-//        offerViewModel.insert(offer)
-//
-//        offer = Offer(3, "Nice offer!!!", 2, "GameTech",
-//            "1800$", "Bern", "Description of the third offer. " +
-//                    "It's a nice chance to become a Java Programmer in our marvellous company. " +
-//                    "Required skills are: Java 5+ years, PHP, Agile...", "Senior", "active")
-//        offerViewModel.insert(offer)
-//
-//        offer = Offer(4, "Hurry to become our employee", 3, "SmartBusiness",
-//            "667$", "London", "Take this option if you are a shark " +
-//                    "You are out best candidate if you know: Math, Probability, Law...", "Intern", "active")
-//        offerViewModel.insert(offer)
+        offer = Offer(2, "Offer Two", 2, "GreatSolutions",
+            "900$", "Paris", "We need to write something here for the second offer. " +
+                    "We offer you a nice chance to become a SQL Programmer in our marvellous company. " +
+                    "Required skills are: SQL, PHP, Agile...", "Middle", "active")
+        offerViewModel.insert(offer)
+
+        offer = Offer(3, "Nice offer!!!", 2, "GameTech",
+            "1800$", "Bern", "Description of the third offer. " +
+                    "It's a nice chance to become a Java Programmer in our marvellous company. " +
+                    "Required skills are: Java 5+ years, PHP, Agile...", "Senior", "active")
+        offerViewModel.insert(offer)
+
+        offer = Offer(4, "Hurry to become our employee", 3, "SmartBusiness",
+            "667$", "London", "Take this option if you are a shark " +
+                    "You are out best candidate if you know: Math, Probability, Law...", "Intern", "active")
+        offerViewModel.insert(offer)
     }
 }

@@ -1,15 +1,16 @@
-package com.example.hirehub.model
+package com.example.hirehub.model.repository
 
 import androidx.annotation.WorkerThread
 import com.example.hirehub.model.dao.OfferDao
 import com.example.hirehub.model.entities.Offer
+import com.example.hirehub.model.entities.OfferWithCategory
 //import com.example.hirehub.model.entities.OfferWithCategoryOffer
 import kotlinx.coroutines.flow.Flow
 
 class OfferRepository(private val offerDao: OfferDao) {
 
-    val allOffers: Flow<List<Offer>> = offerDao.getAllOffer()
-//    val allOffersWithCategories: Flow<List<OfferWithCategoryOffer>> = offerDao.getAllOfferWithCategory()
+//    val allOffers: Flow<List<Offer>> = offerDao.getAllOffer()
+    val allOffersWithCategories: Flow<List<OfferWithCategory>> = offerDao.getAllOfferWithCategory()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

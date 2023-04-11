@@ -21,7 +21,7 @@
             android:name=".ui.seeker.SeekerRequestsActivity"
             android:exported="false" />
         <activity
-            android:name=".OfferDescriptionsActivity"
+            android:name=".ui.seeker.OfferDescriptionsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.hr.AccountHRActivity"
@@ -31,9 +31,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.hr.HrHomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.seeker.AccountActivity"
             android:exported="false" />
         <activity
             android:name=".ui.seeker.SearchActivity"

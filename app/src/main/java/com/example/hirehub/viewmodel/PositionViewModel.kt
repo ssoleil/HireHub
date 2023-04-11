@@ -1,8 +1,8 @@
 package com.example.hirehub.model
 
 import androidx.lifecycle.*
-import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.Position
+import com.example.hirehub.model.repository.PositionRepository
 import kotlinx.coroutines.launch
 
 class PositionViewModel(private val positionRepository: PositionRepository) : ViewModel() {

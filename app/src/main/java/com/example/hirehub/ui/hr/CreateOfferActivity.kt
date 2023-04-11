@@ -17,6 +17,7 @@ import com.example.hirehub.databinding.ActivityCreateOfferBinding
 import com.example.hirehub.model.*
 import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.OfferCategory
+import com.example.hirehub.model.entities.User
 import com.google.android.material.internal.ViewUtils.hideKeyboard
 
 class CreateOfferActivity : AppCompatActivity() {
@@ -87,8 +88,10 @@ class CreateOfferActivity : AppCompatActivity() {
 //            } else if (salary.text.isEmpty()) {
 //                salary.error = "Salary is required"
             } else {
+                val currentUser = intent.getSerializableExtra("currentUser") as? User
+
                 //todo: find category id, not String
-                val company = userViewModel.currentUser?.userCompany ?: ""
+                val company = currentUser?.userCompany ?: ""
                 val offer = Offer(0, offerName.text.toString(), category_id,
                     company, salary, location, description, position, "active")
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hirehub.databinding.ActivityHrHomeBinding
+import com.example.hirehub.model.entities.User
 
 class HrHomeActivity : AppCompatActivity() {
 
@@ -18,19 +19,21 @@ class HrHomeActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        val currentUser = intent.getSerializableExtra("currentUser") as? User
+
         binding.fab.setOnClickListener {
             val i = Intent(applicationContext, CreateOfferActivity::class.java)
-            val currentUsername = intent.getStringExtra("currentUserId")
-            currentUsername?.let { it1 -> Log.d("currentUserId", it1) }
-            i.putExtra("currentUserId", currentUsername)
+//            val currentUsername = currentUser.userUsername
+//            currentUsername?.let { it1 -> Log.d("currentUserId", it1) }
+            i.putExtra("currentUser", currentUser)
             startActivity(i)
         }
 
         binding.btnAccount.setOnClickListener {
             val i = Intent(applicationContext, AccountHRActivity::class.java)
-            val currentUsername = intent.getStringExtra("currentUserId")
-            currentUsername?.let { it1 -> Log.d("currentUserId", it1) }
-            i.putExtra("currentUserId", intent.getStringExtra("currentUserId"))
+//            val currentUsername = intent.getStringExtra("currentUserId")
+//            currentUsername?.let { it1 -> Log.d("currentUserId", it1) }
+            i.putExtra("currentUser", currentUser)
             startActivity(i)
         }
     }

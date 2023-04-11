@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 //@Entity(indices = [Index(value = ["user_username"],
 //    unique = true)])
@@ -22,4 +23,4 @@ class User(
     @ColumnInfo(name = "user_self_description") val userSelfDescription: String?,
     @ColumnInfo(name = "user_company") var userCompany: String?
 
-)
+) : Serializable

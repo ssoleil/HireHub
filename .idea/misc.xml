@@ -5,19 +5,22 @@
       <map>
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/ic_add.xml" value="0.2015" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
+        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/ic_delete.xml" value="0.192" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/ic_my_offers.xml" value="0.2085" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/ic_person.xml" value="0.1365" />
+        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/ic_plus.xml" value="0.192" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/my_offers.xml" value="0.2085" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/round.xml" value="0.164" />
+        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/drawable/text_view_border.xml" value="0.133" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_account.xml" value="0.19010416666666666" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_account_hr.xml" value="0.33" />
-        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_account_seeker.xml" value="0.1484375" />
+        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_account_seeker.xml" value="0.33" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_acount_hractivity.xml" value="0.25" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_create_offer.xml" value="0.25" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_hr_home.xml" value="0.21" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_main.xml" value="0.16875" />
-        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_offer_descriptions.xml" value="0.22" />
+        <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_offer_descriptions.xml" value="0.25" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_request.xml" value="0.33" />
         <entry key="..\:/MOSIG M1/2_second_semester/db/app/src/main/res/layout/activity_search.xml" value="0.19010416666666666" />

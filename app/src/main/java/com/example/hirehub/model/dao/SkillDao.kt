@@ -13,7 +13,7 @@ interface SkillDao {
     @Query("SELECT * FROM skill_table")
     fun getAllSkills(): Flow<List<Skill>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(skill: Skill)
 
     @Query("DELETE FROM skill_table")

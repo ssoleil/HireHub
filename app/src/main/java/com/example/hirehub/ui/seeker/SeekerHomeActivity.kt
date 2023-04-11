@@ -2,6 +2,7 @@ package com.example.hirehub.ui.seeker
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,7 +12,10 @@ import com.example.hirehub.databinding.ActivitySeekerHomeBinding
 import com.example.hirehub.model.OfferViewModel
 import com.example.hirehub.model.OfferViewModelFactory
 import com.example.hirehub.model.entities.Offer
+import com.example.hirehub.model.entities.OfferWithCategory
+import com.example.hirehub.model.entities.User
 import com.example.hirehub.ui.LoginActivity
+import java.io.Serializable
 
 class SeekerHomeActivity : AppCompatActivity() {
 
@@ -27,6 +31,8 @@ class SeekerHomeActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        val currentUser = intent.getSerializableExtra("currentUser") as? User
+
         setSupportActionBar(binding.toolbar)
 
         val recyclerView = binding.rvView
@@ -41,18 +47,19 @@ class SeekerHomeActivity : AppCompatActivity() {
             )
         )
 
-        // Add an observer on the LiveData
-        // The onChanged() method fires when the observed data changes and the activity is
-        // in the foreground.
-//        offerViewModel.allOfferWithCategoryOffer.observe(this) { offers ->
-        offerViewModel.allOffers.observe(this) { offers ->
-            // Update the cached copy of the words in the adapter.
-            //todo: check null members
-//            var offersParsed = offers.toMutableList()
-//            for( offer in offersParsed)
-//                if (offer.offerCity == null) {
-//                    offer.offerCity = ""
-//                }
+        adapter.setOnClickListener(object :
+            OfferAdapter.OnClickListener {
+            override fun onClick(item: OfferWithCategory) {
+                val i = Intent(applicationContext, OfferDescriptionsActivity::class.java)
+                i.putExtra("Offer", item as Serializable)
+                i.putExtra("currentUser", currentUser as Serializable)
+                startActivity(i)
+            }
+        })
+
+
+        offerViewModel.allOfferWithCategoryOffer.observe(this) { offers ->
+//        offerViewModel.allOffers.observe(this) { offers ->
             offers.let { adapter.submitList(it) }
         }
 

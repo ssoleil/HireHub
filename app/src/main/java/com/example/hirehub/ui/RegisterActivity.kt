@@ -29,6 +29,11 @@ class RegisterActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.tvLogin.setOnClickListener {
+            val i = Intent(applicationContext, LoginActivity::class.java)
+            startActivity(i)
+        }
+
         binding.button.setOnClickListener {
             val name = binding.etName
             val username = binding.etUsername
@@ -43,51 +48,49 @@ class RegisterActivity : AppCompatActivity() {
             } else {
                 userViewModel.findUser(username.text.toString()).observe(this) { user ->
                     //if we don't have an account
-                    when (user) {
-                        null -> {
-                            val newUser: User = if (binding.swIsCompany.isChecked) {
-                                User(
-                                    0,
-                                    name.text.toString(),
-                                    username.text.toString(),
-                                    pwd.text.toString(),
-                                    "hr",
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                                )
-                            } else {
-                                User(
-                                    0,
-                                    name.text.toString(),
-                                    username.text.toString(),
-                                    pwd.text.toString(),
-                                    "seeker",
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                                )
-                            }
-                            userViewModel.insert(newUser)
+                    if (user == null) {
+                        val newUser: User = if (binding.swIsCompany.isChecked) {
+                            User(
+                                0,
+                                name.text.toString(),
+                                username.text.toString(),
+                                pwd.text.toString(),
+                                "hr",
+                                null,
+                                null,
+                                null,
+                                null
+                            )
+                        } else {
+                            User(
+                                0,
+                                name.text.toString(),
+                                username.text.toString(),
+                                pwd.text.toString(),
+                                "seeker",
+                                null,
+                                null,
+                                null,
+                                null
+                            )
+                        }
+                        userViewModel.insert(newUser)
 
-                            userViewModel.currentUser = newUser
+                        if (newUser.userStatus == "hr") {
                             val i = Intent(applicationContext, HrHomeActivity::class.java)
                             i.putExtra("currentUserId", newUser.userUsername)
                             startActivity(i)
+                        } else {
+                            val i = Intent(applicationContext, SeekerHomeActivity::class.java)
+                            i.putExtra("currentUserId", newUser.userUsername)
+                            startActivity(i)
                         }
-                        else -> {
-                            Toast.makeText(this, "User is already exists", Toast.LENGTH_SHORT).show()
-                        }
+
+                    } else {
+                        Toast.makeText(this, "User is already exists", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
-        }
-
-        binding.tvLogin.setOnClickListener {
-            val i = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(i)
         }
 
     }

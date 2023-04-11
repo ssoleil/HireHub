@@ -1,17 +1,21 @@
 package com.example.hirehub.model.entities
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.io.Serializable
 import androidx.room.*
 import androidx.room.ForeignKey.Companion.CASCADE
 
 @Entity(tableName = "offer_table",
-//    foreignKeys = [
-//        ForeignKey(
-//            entity = OfferCategory::class,
-//            childColumns = ["offer_category_id"],
-//            parentColumns = ["categoryId"],
-//            onDelete = CASCADE
-//        )
-//    ]
+    foreignKeys = [
+        ForeignKey(
+            entity = OfferCategory::class,
+            childColumns = ["offer_category_id"],
+            parentColumns = ["categoryId"],
+            onDelete = CASCADE
+        )
+    ]
 )
 class Offer (
 
@@ -26,14 +30,15 @@ class Offer (
 
     //might be "active" (new) or "closed" if the hr submit the seeker on an offer
     @ColumnInfo(name = "offer_status") val offerStatus: String,
-)
+) : Serializable
 
 
-//data class OfferWithCategoryOffer(
-//    @Embedded val offer: Offer,
-//    @Relation(
-//        parentColumn = "offer_id",
-//        entityColumn = "categoryId"
-//    )
-//    val offerCategory: OfferCategory
-//)
+
+data class OfferWithCategory(
+    @Embedded val offer: Offer,
+    @Relation(
+        parentColumn = "offer_id",
+        entityColumn = "categoryId"
+    )
+    val offerCategory: OfferCategory
+) : Serializable

@@ -13,7 +13,7 @@ interface ExperienceDao {
     @Query("SELECT * FROM experience_table")
     fun getAllExperience(): Flow<List<Experience>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(education: Experience)
 
     @Query("DELETE FROM experience_table")

@@ -54,7 +54,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/seeker"
+        android:id="@+id/tv_seeker_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_login" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/tv_offer_description"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_gravity="start"
@@ -79,7 +79,7 @@ give me a job please."
         android:textColor="#757575"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seeker" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_seeker_name" />
 
 
     <TextView
@@ -93,7 +93,7 @@ give me a job please."
         android:textColor="#000"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_offer_description" />
 
 
     <TextView

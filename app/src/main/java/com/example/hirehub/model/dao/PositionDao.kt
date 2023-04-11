@@ -14,7 +14,7 @@ interface PositionDao {
     @Query("SELECT * FROM position_table")
     fun getAllPositions(): Flow<List<Position>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(position: Position)
 
     @Query("DELETE FROM position_table")
