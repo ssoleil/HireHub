@@ -19,10 +19,6 @@ class SeekerRequestsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySeekerRequestsBinding
 
-    private val offerViewModel: OfferViewModel by viewModels {
-        OfferViewModelFactory((application as HireHubApplication).offerRepository)
-    }
-
     private val userWithOfferViewModel: UserWithOfferViewModel by viewModels {
         UserWithOfferViewModelFactory((application as HireHubApplication).userWithOfferRepository)
     }

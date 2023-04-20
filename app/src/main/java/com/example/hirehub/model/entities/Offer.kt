@@ -28,7 +28,7 @@ class Offer (
     @ColumnInfo(name = "offer_description") var offerDescription: String?,
     @ColumnInfo(name = "offer_position") val offerPosition: String?,
 
-    //might be "active" (new) or "closed" if the hr submit the seeker on an offer
+    //might be "active", "new", "rejected" or "accepted" if the hr submit the seeker on an offer
     @ColumnInfo(name = "offer_status") val offerStatus: String,
 ) : Serializable
 

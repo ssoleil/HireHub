@@ -27,6 +27,9 @@
             android:name=".ui.hr.AccountHRActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.seeker.AccountSeekerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.hr.CreateOfferActivity"
             android:exported="false" />
         <activity

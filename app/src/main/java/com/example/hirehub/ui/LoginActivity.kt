@@ -26,6 +26,10 @@ class LoginActivity : AppCompatActivity() {
         UserViewModelFactory((application as HireHubApplication).userRepository)
     }
 
+    private val userWithOfferViewModel: UserWithOfferViewModel by viewModels {
+        UserWithOfferViewModelFactory((application as HireHubApplication).userWithOfferRepository)
+    }
+
     private val offerViewModel: OfferViewModel by viewModels {
         OfferViewModelFactory((application as HireHubApplication).offerRepository)
     }
@@ -96,10 +100,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun cleanDB() {
+        userWithOfferViewModel.deleteAll()
         userViewModel.deleteAll()
-        offerViewModel.deleteAll()
         categoryViewModel.deleteAll()
+        offerViewModel.deleteAll()
         positionViewModel.deleteAll()
+
     }
 
     private fun setUpDB() {
