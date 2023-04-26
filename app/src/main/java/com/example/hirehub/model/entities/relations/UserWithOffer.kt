@@ -7,7 +7,8 @@ import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.User
 import java.io.Serializable
 
-@Entity(tableName = "user_offer_table", primaryKeys = ["user_id", "offer_id"],
+@Entity(tableName = "user_offer_table",
+    primaryKeys = ["user_id", "offer_id"],
     foreignKeys = [
         ForeignKey(
             entity = User::class,
@@ -24,3 +25,4 @@ class UserWithOffer (
     val user_id: Int,
     val offer_id: Int,
 ) : Serializable
+

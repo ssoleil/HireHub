@@ -107,7 +107,6 @@ class CreateOfferActivity : AppCompatActivity() {
                                     company, salary, location, description, position, "active"
                                 )
 
-                                //change ui
                                 offerViewModel.insert(offer)
 
                                 //get the new offer id

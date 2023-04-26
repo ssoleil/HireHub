@@ -59,6 +59,7 @@ class OfferDescriptionsActivity : AppCompatActivity() {
                         Log.d("Offer", user.user_id.toString() + " " + offer.offer_id.toString())
                         userWithOfferViewModel.insert(join)
                         Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show()
+                        finish()
                     }
                 }
             } else {
