@@ -14,13 +14,14 @@ import com.example.hirehub.model.OfferViewModel
 import com.example.hirehub.model.OfferViewModelFactory
 import com.example.hirehub.model.UserViewModel
 import com.example.hirehub.model.UserViewModelFactory
+import com.example.hirehub.model.entities.User
 import com.example.hirehub.ui.LoginActivity
 
 
 class AccountHRActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAccountHrBinding
-    private var currentUsername : String? = null
+//    private var currentUsername : String? = null
 
     private val userViewModel: UserViewModel by viewModels {
         UserViewModelFactory((application as HireHubApplication).userRepository)
@@ -32,12 +33,12 @@ class AccountHRActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        currentUsername = intent.getStringExtra("currentUserId")
+//        currentUsername = intent.getStringExtra("currentUserId")
+        val currentUser = intent.getSerializableExtra("currentUser") as? User
 
-        currentUsername?.let {
-            changeUserUI(it)
+        currentUser?.let {
+            changeUserUI(it.userUsername)
         }
-
 
         binding.btnCroissant.setOnClickListener {
             Toast.makeText(this, "You are a sweet croissant", Toast.LENGTH_SHORT).show()
@@ -58,12 +59,14 @@ class AccountHRActivity : AppCompatActivity() {
                     if (etCompany.text.isEmpty()) {
                         etCompany.error = "Company name is required!"
                     } else {
-                        currentUsername?.let { it1 ->
+                        currentUser?.userUsername?.let { it1 ->
                             userViewModel.findUser(it1).observe(this) { user ->
                                 if (user != null) {
+                                    Log.d("AccountHR", user.userUsername)
                                     user.userCompany = etCompany.text.toString()
                                     userViewModel.update(user)
                                 }
+                                Log.d("AccountHR", "null")
                                 binding.tvCompanyName.text = user?.userCompany
                             }
                         }
@@ -91,12 +94,14 @@ class AccountHRActivity : AppCompatActivity() {
                     if (etUsername.text.isEmpty()) {
                         etUsername.error = "User name is required!"
                     } else {
-                        currentUsername?.let { it1 ->
+                        currentUser?.userUsername?.let { it1 ->
                             userViewModel.findUser(it1).observe(this) { user ->
                                 if (user != null) {
+                                    Log.d("AccountHR", user.userUsername)
                                     user.userName = etUsername.text.toString()
                                     userViewModel.update(user)
                                 }
+                                Log.d("AccountHR", "null")
                                 binding.tvName.text = user?.userName
                             }
                         }

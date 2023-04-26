@@ -18,4 +18,10 @@ class ExperienceRepository(private val experienceDao: ExperienceDao) {
     suspend fun insert(experience: Experience) {
         experienceDao.insert(experience)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteAll() {
+        experienceDao.deleteAll()
+    }
 }

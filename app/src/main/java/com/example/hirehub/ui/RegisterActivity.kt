@@ -2,6 +2,7 @@ package com.example.hirehub.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import com.example.hirehub.model.UserViewModelFactory
 import com.example.hirehub.model.entities.User
 import com.example.hirehub.ui.hr.HrHomeActivity
 import com.example.hirehub.ui.seeker.SeekerHomeActivity
+import java.io.Serializable
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -74,19 +76,25 @@ class RegisterActivity : AppCompatActivity() {
                                 null
                             )
                         }
+                        Log.d("Register", "new user")
                         userViewModel.insert(newUser)
 
                         if (newUser.userStatus == "hr") {
+                            Log.d("Register", "hr")
                             val i = Intent(applicationContext, HrHomeActivity::class.java)
-                            i.putExtra("currentUserId", newUser.userUsername)
+//                            i.putExtra("currentUserId", newUser.userUsername)
+                            i.putExtra("currentUser", newUser as Serializable)
                             startActivity(i)
                         } else {
+                            Log.d("Register", "seeker")
                             val i = Intent(applicationContext, SeekerHomeActivity::class.java)
-                            i.putExtra("currentUserId", newUser.userUsername)
+//                            i.putExtra("currentUserId", newUser.userUsername)
+                            i.putExtra("currentUser", newUser as Serializable)
                             startActivity(i)
                         }
 
                     } else {
+                        Log.d("Register", "User is already exists")
                         Toast.makeText(this, "User is already exists", Toast.LENGTH_SHORT).show()
                     }
                 }

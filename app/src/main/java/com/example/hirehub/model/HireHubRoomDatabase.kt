@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
 // Each entity corresponds to a table that will be created in the database
 
 @Database(entities = [User::class, Offer::class, OfferCategory::class, UserWithOffer::class,
-    Position::class, Education::class, Experience::class, Skill::class], version = 6)
+    Position::class, Education::class, Experience::class, Skill::class], version = 7)
 
 abstract class HireHubRoomDatabase : RoomDatabase() {
 
@@ -101,3 +101,31 @@ abstract class HireHubRoomDatabase : RoomDatabase() {
 //        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

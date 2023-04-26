@@ -1,5 +1,6 @@
 package com.example.hirehub.ui.seeker
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -25,14 +26,14 @@ class OfferAdapter :
     class OfferViewHolder(private val itemBinding: OfferItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(offer: OfferWithCategory) {
-
-            itemBinding.tvCategory.text = offer.offerCategory.categoryName
-            itemBinding.tvOfferName.text = offer.offer.offerName
-            itemBinding.tvCity.text = offer.offer.offerCity
-            itemBinding.tvCompanyName.text = offer.offer.offerCompanyName
-            itemBinding.tvDescription.text = offer.offer.offerDescription
-            itemBinding.tvPosition.text = offer.offer.offerPosition
-            itemBinding.tvSalary.text = offer.offer.offerSalary
+            //Log.d("OfferAdapter", offer.offer_name + offer.category_name)
+            itemBinding.tvCategory.text = offer.category_name
+            itemBinding.tvOfferName.text = offer.offer_name
+            itemBinding.tvCity.text = offer.offer_city
+            itemBinding.tvCompanyName.text = offer.offer_company_name
+            itemBinding.tvDescription.text = offer.offer_description
+            itemBinding.tvPosition.text = offer.offer_position
+            itemBinding.tvSalary.text = offer.offer_salary
 
         }
     }
@@ -57,7 +58,7 @@ class OfferAdapter :
             }
 
             override fun areContentsTheSame(oldItem: OfferWithCategory, newItem: OfferWithCategory): Boolean {
-                return oldItem.offer.offer_id == newItem.offer.offer_id
+                return oldItem.offer_id == newItem.offer_id
             }
         }
     }

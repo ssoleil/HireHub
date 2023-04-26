@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.example.hirehub.R
 import com.example.hirehub.databinding.ActivityAccountSeekerBinding
 import com.example.hirehub.databinding.ActivitySeekerRequestsBinding
+import com.example.hirehub.ui.LoginActivity
 
 class AccountSeekerActivity : AppCompatActivity() {
 
@@ -27,6 +28,11 @@ class AccountSeekerActivity : AppCompatActivity() {
 
         binding.btnSearch.setOnClickListener {
             val i = Intent(applicationContext, SearchActivity::class.java)
+            startActivity(i)
+        }
+
+        binding.btnLogOut.setOnClickListener {
+            val i = Intent(applicationContext, LoginActivity::class.java)
             startActivity(i)
         }
     }

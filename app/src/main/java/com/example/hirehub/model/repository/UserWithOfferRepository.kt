@@ -2,6 +2,7 @@ package com.example.hirehub.model.repository
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import androidx.room.Query
 import com.example.hirehub.model.dao.UserDao
 import com.example.hirehub.model.dao.UserWithOfferDao
 import com.example.hirehub.model.entities.User
@@ -25,5 +26,8 @@ class UserWithOfferRepository(private val userOfferDao: UserWithOfferDao) {
 
     fun findOffersByUser(user_id: Int) : LiveData<UserOfferPair?> =
         userOfferDao.findOffersByUser(user_id)
+
+//    fun findUserOfferPairsByUser(hr_id : Int, hr_offer_ids: List<Int>?): LiveData<List<UserOfferPair>?> =
+//        userOfferDao.findUserOfferPairsByUser(hr_id, hr_offer_ids)
 
 }

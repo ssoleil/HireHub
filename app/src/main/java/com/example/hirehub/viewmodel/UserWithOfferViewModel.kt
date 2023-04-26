@@ -1,6 +1,7 @@
 package com.example.hirehub.model
 
 import androidx.lifecycle.*
+import com.example.hirehub.model.entities.OfferWithCategory
 import com.example.hirehub.model.entities.User
 import com.example.hirehub.model.entities.relations.UserOfferPair
 import com.example.hirehub.model.entities.relations.UserWithOffer
@@ -17,6 +18,9 @@ class UserWithOfferViewModel(private val userWithOfferRepository: UserWithOfferR
     fun findUser(user_id: Int) : LiveData<UserOfferPair?> {
         return userWithOfferRepository.findOffersByUser(user_id)
     }
+
+//    fun findUserOfferPairsByUser(hr_id : Int, hr_offer_ids: List<Int>?): LiveData<List<UserOfferPair>?> =
+//        userWithOfferRepository.findUserOfferPairsByUser(hr_id, hr_offer_ids)
 
     fun deleteAll() = viewModelScope.launch {
         userWithOfferRepository.deleteAll()

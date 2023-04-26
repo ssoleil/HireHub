@@ -2,6 +2,7 @@ package com.example.hirehub.ui.seeker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.hirehub.HireHubApplication
@@ -25,6 +26,10 @@ class OfferDescriptionsActivity : AppCompatActivity() {
         UserWithOfferViewModelFactory((application as HireHubApplication).userWithOfferRepository)
     }
 
+    private val userViewModel: UserViewModel by viewModels {
+        UserViewModelFactory((application as HireHubApplication).userRepository)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOfferDescriptionsBinding.inflate(layoutInflater)
@@ -34,11 +39,11 @@ class OfferDescriptionsActivity : AppCompatActivity() {
         val offer = intent.getSerializableExtra("Offer") as? OfferWithCategory
         val currentUser = intent.getSerializableExtra("currentUser") as? User
 
-        binding.offerNameTitle.text = offer?.offer?.offerName ?: ""
-        binding.tvOfferDescription.text = offer?.offer?.offerDescription ?: ""
-        binding.category.text = offer?.offerCategory?.categoryName ?: ""
-        binding.companyName.text = offer?.offer?.offerCompanyName ?: ""
-        binding.positionName.text = offer?.offer?.offerPosition ?: ""
+        binding.offerNameTitle.text = offer?.offer_name ?: ""
+        binding.tvOfferDescription.text = offer?.offer_description ?: ""
+        binding.category.text = offer?.category_name ?: ""
+        binding.companyName.text = offer?.offer_company_name ?: ""
+        binding.positionName.text = offer?.offer_position ?: ""
 
         binding.btnBack.setOnClickListener {
             finish()
@@ -48,9 +53,14 @@ class OfferDescriptionsActivity : AppCompatActivity() {
             //insert to the n:m table with user id and offer id
 
             if (offer != null && currentUser != null) {
-                val join = UserWithOffer(currentUser.user_id, offer.offer.offer_id)
-                userWithOfferViewModel.insert(join)
-                Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show()
+                userViewModel.findUser(currentUser.userUsername).observe(this) { user ->
+                    if (user != null) {
+                        val join = UserWithOffer(user.user_id, offer.offer_id)
+                        Log.d("Offer", user.user_id.toString() + " " + offer.offer_id.toString())
+                        userWithOfferViewModel.insert(join)
+                        Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show()
+                    }
+                }
             } else {
                 Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
             }

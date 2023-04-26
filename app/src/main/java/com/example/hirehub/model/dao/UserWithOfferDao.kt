@@ -26,4 +26,7 @@ interface UserWithOfferDao {
 
     @Query("DELETE FROM user_offer_table")
     suspend fun deleteAll()
+
+//    @Query("SELECT * FROM user_table WHERE offer_id IN (:hr_offer_ids) AND user_id != :hr_id")
+//    fun findUserOfferPairsByUser(hr_id : Int, hr_offer_ids: List<Int>?): LiveData<List<UserOfferPair>?>
 }

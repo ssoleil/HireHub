@@ -2,6 +2,7 @@ package com.example.hirehub.model
 
 import androidx.lifecycle.*
 import com.example.hirehub.model.entities.OfferCategory
+import com.example.hirehub.model.entities.User
 import com.example.hirehub.model.repository.OfferCategoryRepository
 import kotlinx.coroutines.launch
 
@@ -18,6 +19,10 @@ class OfferCategoryViewModel(private val offerCategoryRepository: OfferCategoryR
 
     fun deleteAll() = viewModelScope.launch {
         offerCategoryRepository.deleteAll()
+    }
+
+    fun findCategory(name: String) : LiveData<OfferCategory?> {
+        return offerCategoryRepository.findCategory(name)
     }
 }
 

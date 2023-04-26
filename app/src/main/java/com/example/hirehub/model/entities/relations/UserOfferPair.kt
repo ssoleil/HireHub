@@ -5,6 +5,7 @@ import androidx.room.Junction
 import androidx.room.Relation
 import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.User
+import java.io.Serializable
 
 data class UserOfferPair (
     @Embedded
@@ -20,4 +21,4 @@ data class UserOfferPair (
         )
     )
     var offers: List<Offer>
-)
+) : Serializable

@@ -3,6 +3,7 @@ package com.example.hirehub.model
 import androidx.lifecycle.*
 import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.OfferWithCategory
+import com.example.hirehub.model.entities.User
 import com.example.hirehub.model.repository.OfferRepository
 //import com.example.hirehub.model.entities.OfferWithCategoryOffer
 import kotlinx.coroutines.launch
@@ -20,6 +21,10 @@ class OfferViewModel(private val offerRepository: OfferRepository) : ViewModel()
 
     fun deleteAll() = viewModelScope.launch {
         offerRepository.deleteAll()
+    }
+
+    fun findOfferId(name: String) : LiveData<Int?> {
+        return offerRepository.findOfferId(name)
     }
 }
 

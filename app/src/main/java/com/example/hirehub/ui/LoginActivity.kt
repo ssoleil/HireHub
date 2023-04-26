@@ -9,13 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.hirehub.HireHubApplication
 import com.example.hirehub.databinding.ActivityLoginBinding
 import com.example.hirehub.model.*
-import com.example.hirehub.model.entities.Offer
-import com.example.hirehub.model.entities.OfferCategory
-import com.example.hirehub.model.entities.Position
-import com.example.hirehub.model.entities.User
+import com.example.hirehub.model.entities.*
 import com.example.hirehub.ui.hr.HrHomeActivity
 import com.example.hirehub.ui.seeker.SeekerHomeActivity
 import java.io.Serializable
+import java.time.LocalDate
+import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -40,6 +39,10 @@ class LoginActivity : AppCompatActivity() {
 
     private val positionViewModel: PositionViewModel by viewModels {
         PositionViewModelFactory((application as HireHubApplication).positionRepository)
+    }
+
+    private val experienceViewModel: ExperienceViewModel by viewModels {
+        ExperienceViewModelFactory((application as HireHubApplication).experienceRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,6 +108,7 @@ class LoginActivity : AppCompatActivity() {
         categoryViewModel.deleteAll()
         offerViewModel.deleteAll()
         positionViewModel.deleteAll()
+        //experienceViewModel.deleteAll()
 
     }
 
@@ -116,6 +120,10 @@ class LoginActivity : AppCompatActivity() {
 
         userViewModel.insert(User(2, "hr", "hr",
             "hr", "hr", null, null, null,
+            null))
+
+        userViewModel.insert(User(3, "Seeker Name", "seeker1",
+            "seeker", "seeker", 25, null, null,
             null))
 
         categoryViewModel.insert(OfferCategory(1, "programming"))
@@ -160,5 +168,8 @@ class LoginActivity : AppCompatActivity() {
             "667$", "London", "Take this option if you are a shark " +
                     "You are out best candidate if you know: Math, Probability, Law...", "Intern", "active")
         offerViewModel.insert(offer)
+
+//        var experience = Experience(1, 3, "NiceCompany", "2018", "2021", 3, null)
+//        experienceViewModel.insert(experience)
     }
 }

@@ -5,6 +5,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.User
+import java.io.Serializable
 
 @Entity(tableName = "user_offer_table", primaryKeys = ["user_id", "offer_id"],
     foreignKeys = [
@@ -22,4 +23,4 @@ import com.example.hirehub.model.entities.User
 class UserWithOffer (
     val user_id: Int,
     val offer_id: Int,
-)
+) : Serializable

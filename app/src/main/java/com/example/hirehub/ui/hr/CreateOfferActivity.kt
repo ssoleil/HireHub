@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -18,6 +19,7 @@ import com.example.hirehub.model.*
 import com.example.hirehub.model.entities.Offer
 import com.example.hirehub.model.entities.OfferCategory
 import com.example.hirehub.model.entities.User
+import com.example.hirehub.model.entities.relations.UserWithOffer
 import com.google.android.material.internal.ViewUtils.hideKeyboard
 
 class CreateOfferActivity : AppCompatActivity() {
@@ -34,6 +36,10 @@ class CreateOfferActivity : AppCompatActivity() {
 
     private val userViewModel: UserViewModel by viewModels {
         UserViewModelFactory((application as HireHubApplication).userRepository)
+    }
+
+    private val userWithOfferViewModel: UserWithOfferViewModel by viewModels {
+        UserWithOfferViewModelFactory((application as HireHubApplication).userWithOfferRepository)
     }
 
     private val offerViewModel: OfferViewModel by viewModels {
@@ -73,7 +79,7 @@ class CreateOfferActivity : AppCompatActivity() {
             val offerName = binding.etOfferName
             val location = binding.etLocation.text.toString()
             val salary = binding.etSalary.text.toString()
-            val category_id = binding.dropCategory.id+1
+            val category_name = binding.dropCategory.text.toString()
             val position = binding.dropPosition.text.toString()
             val description = binding.etDescription.text.toString()
 
@@ -90,17 +96,39 @@ class CreateOfferActivity : AppCompatActivity() {
             } else {
                 val currentUser = intent.getSerializableExtra("currentUser") as? User
 
-                //todo: find category id, not String
-                val company = currentUser?.userCompany ?: ""
-                val offer = Offer(0, offerName.text.toString(), category_id,
-                    company, salary, location, description, position, "active")
+                categoryViewModel.findCategory(category_name).observe(this) { it ->
+                    currentUser?.userUsername?.let { it1 ->
+                        userViewModel.findUser(it1).observe(this) { user ->
+                            if (it != null) {
+                                Log.d("CreateOffer", it.categoryName)
+                                val company = user?.userCompany ?: "Hidden company"
+                                val offer = Offer(
+                                    0, offerName.text.toString(), it.categoryId,
+                                    company, salary, location, description, position, "active"
+                                )
 
-                //todo: add to my offers
-                Log.d("CreateOffer", offer.offerName + "-" + offer.offerCity + "-" + offer.offerCategoryId +
-                        "-" + offer.offerCompanyName + "-" + offer.offerPosition + "-" + offer.offerDescription)
+                                //change ui
+                                offerViewModel.insert(offer)
 
-                //todo: change ui
-                offerViewModel.insert(offer)
+                                //get the new offer id
+                                offerViewModel.findOfferId(offer.offerName).observe(this) {
+                                    Log.d("CreateOffer", "offer_id is" + it.toString())
+
+                                    //make many-to-many-connection
+                                    if (it != null) {
+                                        val join = UserWithOffer(currentUser.user_id, it)
+                                        userWithOfferViewModel.insert(join)
+                                        Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        Log.d("CreateOffer", "offer_id == null")
+                                        Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            } else
+                                Log.d("CreateOffer", "it null")
+                        }
+                    }
+                }
                 finish()
             }
         }
